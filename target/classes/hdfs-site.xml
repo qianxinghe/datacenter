@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+	<property>
+	<name>dfs.nameservices</name>
+	<value>JT01</value>
+	</property>
+
+	<property>
+	<name>dfs.ha.namenodes.JT01</name>
+	<value>nn1,nn2</value>
+	</property>
+	<property>
+	<name>dfs.namenode.rpc-address.JT01.nn1</name>
+	<value>node1:8020</value>
+	</property>
+	<property>
+	<name>dfs.namenode.rpc-address.JT01.nn2</name>
+	<value>node6:8020</value>
+	</property>
+
+	<property>
+	<name>dfs.namenode.http-address.JT01.nn1</name>
+	<value>node1:50070</value>
+	</property>
+	<property>
+	<name>dfs.namenode.http-address.JT01.nn2</name>
+	<value>node6:50070</value>
+	</property>
+
+	<property>
+	<name>dfs.ha.automatic-failover.enabled</name>
+	<value>true</value>
+	</property>
+	<property>
+	<name>dfs.namenode.shared.edits.dir</name>
+	<value>qjournal://node1:8485;node6:8485/JT01</value>
+	</property>
+	<property>
+	<name>dfs.journalnode.edits.dir</name>
+	<value>/data/hadoop-3.2.2/data/journaldata</value>
+	</property>
+	<property>
+	<name>dfs.client.failover.proxy.provider.JT01</name>
+	<value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+	</property>
+	<property>
+	<name>dfs.ha.fencing.methods</name>
+	<value>shell(/bin/true)</value>
+	</property>
+	<property>
+	<name>dfs.ha.fencing.ssh.private-key-files</name>
+	<value>/home/user/.ssh/id_rsa</value>
+	</property>
+	<property>
+	<name>dfs.ha.automatic-failover.enabled</name>
+	<value>true</value>
+	</property>
+	<property>
+	<name>dfs.ha.fencing.ssh.connect-timeout</name>
+	<value>30000</value>
+	</property>
+	<property>
+	<name>dfs.namenode.handler.count</name>
+	<value>100</value>
+	</property>
+
+	<!-- 指定namenode元数据的存放位置 -->
+	<property>
+		<name>dfs.namenode.name.dir</name>
+		<value>/data/hadoop-3.2.2/data/namenodeDatas</value>
+	</property>
+	<!--  定义datanode数据存储的节点位置 -->
+	<property>
+		<name>dfs.datanode.data.dir</name>
+		<value>/data/hadoop-3.2.2/data/datanodeDatas,/hdata/hadoop-3.2.2/data/datanodeDatas</value>
+	</property>	
+	<!-- 定义namenode的edits文件存放路径 -->
+	<property>
+		<name>dfs.namenode.edits.dir</name>
+		<value>/data/hadoop-3.2.2/data/nn/edits</value>
+	</property>
+	<!-- 配置检查点目录 -->
+	<property>
+		<name>dfs.namenode.checkpoint.dir</name>
+		<value>/data/hadoop-3.2.2/data/snn/name</value>
+	</property>
+	<property>
+		<name>dfs.namenode.checkpoint.edits.dir</name>
+		<value>/data/hadoop-3.2.2/data/dfs/snn/edits</value>
+	</property>
+	<!-- 文件切片的副本个数-->
+	<property>
+		<name>dfs.replication</name>
+		<value>2</value>
+	</property>
+	<!-- 设置HDFS的文件权限-->
+	<property>
+		<name>dfs.permissions</name>
+		<value>false</value>
+	</property>
+	<!-- 设置一个文件切片的大小：128M-->
+	<property>
+		<name>dfs.blocksize</name>
+		<value>134217728</value>
+	</property>
+	<!-- 指定DataNode的节点配置文件 -->
+	<property>
+		<name>dfs.hosts</name>
+		<value>/data/hadoop-3.2.2/etc/hadoop/slaves</value>
+	</property>
+</configuration>
